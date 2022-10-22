@@ -7,7 +7,7 @@ class RequestsControllers {
     const { id } = req.params;
 
     if (!id) {
-      return res.status(404).json({ error: 'Error data invalido' });
+      return res.status(404).json({ error: 'Error invalid data' });
     }
 
     try {
@@ -41,14 +41,14 @@ class RequestsControllers {
       return res.status(200).json(requests);
     } catch (error) {
       console.log(error);
-      return res.status(501).json({ error: 'Error internal servidor' });
+      return res.status(501).json({ error: 'Internal server error' });
     }
   }
   async readAll(req: Request, res: Response) {
     const { userId } = req as any;
 
     if (!userId) {
-      return res.status(404).json({ error: 'Error data invalido' });
+      return res.status(404).json({ error: 'Error invalid data' });
     }
 
     try {
@@ -65,7 +65,7 @@ class RequestsControllers {
       return res.status(200).json(requests);
     } catch (error) {
       console.log(error);
-      return res.status(501).json({ error: 'Error internal servidor' });
+      return res.status(501).json({ error: 'Internal server error' });
     }
   }
 
@@ -100,7 +100,7 @@ class RequestsControllers {
           addressId,
         })
       ) {
-        return res.status(404).json({ error: 'Error data invalido' });
+        return res.status(404).json({ error: 'Error invalid data' });
       }
 
       const requests = await prisma.requests.create({
@@ -118,7 +118,7 @@ class RequestsControllers {
       return res.status(202).json(requests);
     } catch (error) {
       console.log(error);
-      return res.status(501).json({ error: 'Error internal servidor' });
+      return res.status(501).json({ error: 'Internal server error' });
     }
   }
 }

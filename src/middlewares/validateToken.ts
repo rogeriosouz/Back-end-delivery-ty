@@ -5,7 +5,7 @@ const ferifica = async (req: any, res: Response, next: NextFunction) => {
   const token = req.headers['authorization'];
 
   if (!token) {
-    return res.status(402).json({ Errors: 'Token nao enviado!' });
+    return res.status(402).json({ Errors: 'Token not sent' });
   }
 
   jwt.verify(
@@ -13,7 +13,7 @@ const ferifica = async (req: any, res: Response, next: NextFunction) => {
     process.env.SECRET as string,
     (err: any, decoded: any) => {
       if (err) {
-        return res.status(401).json({ Errors: 'Token invalido!' });
+        return res.status(401).json({ Errors: 'Invalid token' });
       }
       req.userId = decoded.userId;
       next();

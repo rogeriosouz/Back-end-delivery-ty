@@ -8,7 +8,7 @@ class AddressController {
 
     try {
       if (!userId) {
-        return res.status(404).json({ error: 'Error data invalido' });
+        return res.status(404).json({ error: 'Error invalid data' });
       }
 
       const address = await prisma.address.findMany({
@@ -19,7 +19,7 @@ class AddressController {
       return res.status(200).json(address);
     } catch (error) {
       console.log(error);
-      return res.status(501).json({ error: 'Error internal servidor' });
+      return res.status(501).json({ error: 'Internal server error' });
     }
   }
 
@@ -53,7 +53,7 @@ class AddressController {
           userId,
         })
       ) {
-        return res.status(404).json({ error: 'Dada invalido' });
+        return res.status(404).json({ error: 'Error invalid data' });
       }
 
       const address = await prisma.address.create({
@@ -72,7 +72,7 @@ class AddressController {
       return res.status(202).json(address);
     } catch (error) {
       console.log(error);
-      return res.status(501).json({ error: 'Error internal servidor' });
+      return res.status(501).json({ error: 'Internal server error' });
     }
   }
 
@@ -106,7 +106,7 @@ class AddressController {
           addressId,
         })
       ) {
-        return res.status(404).json({ error: 'Dada invalido' });
+        return res.status(404).json({ error: 'Error invalid data' });
       }
 
       const addresUpdate = await prisma.address.update({
@@ -125,7 +125,7 @@ class AddressController {
       return res.status(200).json(addresUpdate);
     } catch (error) {
       console.log(error);
-      return res.status(501).json({ error: 'Error internal servidor' });
+      return res.status(501).json({ error: 'Internal server error' });
     }
   }
 
@@ -134,7 +134,7 @@ class AddressController {
 
     try {
       if (!id) {
-        return res.status(400).json({ error: 'params nao informado' });
+        return res.status(400).json({ error: 'Parameter not informed' });
       }
 
       const address = await prisma.address.findFirst({
@@ -146,7 +146,7 @@ class AddressController {
       return res.status(200).json(address);
     } catch (error) {
       console.log(error);
-      return res.status(501).json({ error: 'Error internal servidor' });
+      return res.status(501).json({ error: 'Internal server error' });
     }
   }
 
@@ -155,7 +155,7 @@ class AddressController {
 
     try {
       if (!id) {
-        return res.status(400).json({ error: 'params nao informado' });
+        return res.status(400).json({ error: 'Parameter not informed' });
       }
 
       const address = await prisma.address.delete({
@@ -167,7 +167,7 @@ class AddressController {
       return res.status(200).json(address);
     } catch (error) {
       console.log(error);
-      return res.status(501).json({ error: 'Error internal servidor' });
+      return res.status(501).json({ error: 'Internal server error' });
     }
   }
 }

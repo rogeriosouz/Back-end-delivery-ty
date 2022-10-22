@@ -18,11 +18,11 @@ class UserController {
       const isUser = await prisma.user.findFirst({ where: { email: email } });
 
       if (!schema.parse({ name, email, password })) {
-        return res.status(401).json({ Error: 'error dados invalidos' });
+        return res.status(401).json({ Error: 'Error invalid data' });
       }
 
       if (isUser) {
-        return res.status(401).json({ Error: 'error dados invalidos' });
+        return res.status(401).json({ Error: 'Error invalid data' });
       }
 
       const user = await prisma.user.create({
@@ -43,7 +43,7 @@ class UserController {
       });
     } catch (error) {
       console.log(error);
-      return res.status(501).json({ Error: 'error intenal servidor' });
+      return res.status(501).json({ Error: 'Internal server error' });
     }
   }
 
@@ -56,19 +56,19 @@ class UserController {
       });
 
       if (!schema.parse({ email, password })) {
-        return res.status(401).json({ Error: 'error dados invalidos' });
+        return res.status(401).json({ Error: 'Error invalid data' });
       }
 
       const user = await prisma.user.findFirst({ where: { email } });
 
       if (!user) {
-        return res.status(401).json({ Error: 'error dados invalidos' });
+        return res.status(401).json({ Error: 'Error invalid datas' });
       }
 
       const passwordBcri = bcrypt.compareSync(password, user.password);
 
       if (!passwordBcri) {
-        return res.status(401).json({ Error: 'error dados invalidos' });
+        return res.status(401).json({ Error: 'Error invalid data' });
       }
 
       const token = jwt.sign(
@@ -85,7 +85,7 @@ class UserController {
       });
     } catch (error) {
       console.log(error);
-      return res.status(501).json({ Error: 'error intenal servidor' });
+      return res.status(501).json({ Error: 'Internal server error' });
     }
   }
 
@@ -108,7 +108,7 @@ class UserController {
       });
     } catch (error) {
       console.log(error);
-      return res.status(501).json({ Error: 'error intenal servidor' });
+      return res.status(501).json({ Error: 'Internal server error' });
     }
   }
 }

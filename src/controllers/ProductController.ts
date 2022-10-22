@@ -23,7 +23,7 @@ class ProductController {
       return res.status(200).json(products);
     } catch (error) {
       console.log(error);
-      return res.status(501).json({ Error: 'error intenal servidor' });
+      return res.status(501).json({ Error: 'Internal server error' });
     }
   }
 
@@ -47,11 +47,11 @@ class ProductController {
       const isProduct = await prisma.product.findFirst({ where: { name } });
 
       if (!isCategory) {
-        return res.status(401).json({ Error: 'error dados invalidos' });
+        return res.status(401).json({ Error: 'Error invalid data' });
       }
 
       if (isProduct) {
-        return res.status(401).json({ Error: 'error dados invalidos' });
+        return res.status(401).json({ Error: 'Error invalid data' });
       }
 
       if (
@@ -62,7 +62,7 @@ class ProductController {
           quant: Number(quant),
         })
       ) {
-        return res.status(401).json({ Error: 'error dados invalidos' });
+        return res.status(401).json({ Error: 'Error invalid data' });
       }
 
       const product = await prisma.product.create({
@@ -79,14 +79,14 @@ class ProductController {
       return res.status(200).json(product);
     } catch (error) {
       console.log(error);
-      return res.status(501).json({ Error: 'error intenal servidor' });
+      return res.status(501).json({ Error: 'Internal server error' });
     }
   }
 
   async readOne(req: Request, res: Response) {
     const { id: productId } = req.params;
     if (!productId) {
-      return res.status(404).json({ error: 'Error data invalido' });
+      return res.status(404).json({ error: 'Error invalid data' });
     }
 
     try {
@@ -108,7 +108,7 @@ class ProductController {
       return res.status(200).json(product);
     } catch (error) {
       console.log(error);
-      return res.status(404).json({ error: 'Error internal servidor' });
+      return res.status(404).json({ error: 'Internal server error' });
     }
   }
 
@@ -122,7 +122,7 @@ class ProductController {
       });
 
       if (!schema.parse({ quant })) {
-        return res.status(401).json({ Error: 'error dados invalidos' });
+        return res.status(401).json({ Error: 'Error invalid data' });
       }
 
       const newProduct = await prisma.product.update({
@@ -137,7 +137,7 @@ class ProductController {
       return res.status(200).json(newProduct);
     } catch (error) {
       console.log(error);
-      return res.status(404).json({ error: 'Error internal servidor' });
+      return res.status(404).json({ error: 'Internal server error' });
     }
   }
 
@@ -161,15 +161,15 @@ class ProductController {
       const isProduct = await prisma.product.findFirst({ where: { name } });
 
       if (!isCategory) {
-        return res.status(401).json({ Error: 'error dados invalidos' });
+        return res.status(401).json({ Error: 'Error invalid data' });
       }
 
       if (isProduct) {
-        return res.status(401).json({ Error: 'error dados invalidos' });
+        return res.status(401).json({ Error: 'Error invalid data' });
       }
 
       if (!schema.parse({ name, description, category, price })) {
-        return res.status(401).json({ Error: 'error dados invalidos' });
+        return res.status(401).json({ Error: 'Error invalid data' });
       }
 
       const newProduct = await prisma.product.update({
@@ -188,7 +188,7 @@ class ProductController {
       return res.status(200).json(newProduct);
     } catch (error) {
       console.log(error);
-      return res.status(404).json({ error: 'Error internal servidor' });
+      return res.status(404).json({ error: 'Internal server error' });
     }
   }
 }

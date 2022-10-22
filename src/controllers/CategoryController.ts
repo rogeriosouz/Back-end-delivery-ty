@@ -14,7 +14,7 @@ class CategoryController {
       return res.status(202).json(category);
     } catch (error) {
       console.log(error);
-      return res.status(501).json({ error: 'Error internal servidor' });
+      return res.status(501).json({ error: 'Internal server error' });
     }
   }
 
@@ -23,13 +23,13 @@ class CategoryController {
 
     try {
       if (!name) {
-        return res.status(401).json({ Error: 'error dados invalidos' });
+        return res.status(401).json({ Error: 'Error invalid data' });
       }
 
       const isCategory = await prisma.category.findMany({ where: { name } });
 
       if (isCategory) {
-        return res.status(401).json({ Error: 'error dados invalidos' });
+        return res.status(401).json({ Error: 'Error invalid data' });
       }
 
       const category = await prisma.category.create({ data: { name } });
@@ -37,7 +37,7 @@ class CategoryController {
       return res.status(202).json({ category });
     } catch (error) {
       console.log(error);
-      return res.status(501).json({ error: 'Error internal servidor' });
+      return res.status(501).json({ error: 'Internal server error' });
     }
   }
 
@@ -51,7 +51,7 @@ class CategoryController {
       });
 
       if (!schema.parse({ name })) {
-        return res.status(404).json({ error: 'Dada invalido' });
+        return res.status(404).json({ error: 'Error invalid data' });
       }
 
       const category = await prisma.category.update({
@@ -66,7 +66,7 @@ class CategoryController {
       return res.status(200).json(category);
     } catch (error) {
       console.log(error);
-      return res.status(501).json({ error: 'Error internal servidor' });
+      return res.status(501).json({ error: 'Internal server error' });
     }
   }
 
@@ -74,7 +74,7 @@ class CategoryController {
     const { id } = req.params;
     try {
       if (!id) {
-        return res.status(404).json({ error: 'Dada invalido' });
+        return res.status(404).json({ error: 'Error invalid data' });
       }
 
       await prisma.category.delete({
@@ -84,7 +84,7 @@ class CategoryController {
       return res.status(200).json({});
     } catch (error) {
       console.log(error);
-      return res.status(501).json({ error: 'Error internal servidor' });
+      return res.status(501).json({ error: 'Internal server error' });
     }
   }
 }
