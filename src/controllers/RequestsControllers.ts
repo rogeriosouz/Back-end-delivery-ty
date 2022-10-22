@@ -59,6 +59,7 @@ class RequestsControllers {
         where: {
           userId: userId,
         },
+        orderBy: { createdAt: 'desc' },
       });
 
       return res.status(200).json(requests);
